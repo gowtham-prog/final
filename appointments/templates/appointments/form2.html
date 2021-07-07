@@ -1,0 +1,12 @@
+{% extends "appointments/layout.html"%}
+{% load static %}
+{% block body%}
+<form action="{% url 'fh' %}" method="post">
+{% csrf_token %}
+ <div class="container">
+     <label><b>Hospital:</b></label>
+    <input  type="text" name="Name" placeholder="Enter The Hospital">
+    <button type="submit">Show All Appointments</button> 
+</form>
+</div>
+{%endblock%}

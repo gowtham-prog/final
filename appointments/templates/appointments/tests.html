@@ -1,0 +1,57 @@
+{% extends "appointments/layout.html"%}
+{% load static %}
+{% block body%}
+<form action="{% url 'test' %}" method="post">
+    <h3 style="text-align: center;color:cadetblue">Book Your Tests Here !</h3>
+    
+        {% csrf_token %}
+        <div class="container">
+        <div>
+             <label for="exampleFormControlSelect1"><b> Patient name </b></label>
+             <select placeholder="Enter Name "name="patient" >
+              {% for gend in patient %}
+                <option value="{{ gend.id }}">{{ gend.Name }}</option>
+             {% endfor %}
+           </select>
+         </div>
+         <div>
+             <label for="exampleFormControlSelect1"><b> Location </b></label>
+             <select  placeholder=" Enter location"name="location" >
+              {% for hosp in location %}
+                <option value="{{ hosp.id}}">{{ hosp.Village}}</option>
+             {% endfor %}
+           </select>
+         </div>
+        <div>
+            <label for="exampleFormControlSelect1"><b> Test </b></label>
+            <input class="form-control" type="text" name="test" placeholder=" Enter Type Of Test">
+        </div>
+
+        <div>
+            <label for="exampleFormControlSelect1"><b> Gender </b></label>
+            <select  name="gender" >
+                <option value="Home">Home</option>
+                <option value="test center">Test center</option>
+        </div>
+
+        <div>
+             <label><b>Test Centre </b></label>
+          <input  type="text" name="Name" placeholder =" Enter Test Center">
+        </div>
+        <div class="form-group" style = "margin-bottom : 5px;">
+            <label for="exampleFormControlSelect1"><b> Time </b></label>
+
+            <input class="form-control" type="time" name="time" format='%H:%M' placeholder="Enter Time">
+        </div>
+        <div class="form-group" style = "margin-bottom : 5px;">
+            <label for="exampleFormControlSelect1"><b> Date </b></label>
+
+            <input class="form-control" type="date" name="date" placeholder="Enter Date">
+        </div>
+        <button type="submit" class="registerbtn"> Book Test </button>
+        </div>
+    </form>
+
+{% endblock %}
+
+

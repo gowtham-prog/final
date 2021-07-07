@@ -1,0 +1,41 @@
+{% extends "appointments/layout.html "%}
+
+{% block body%}
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+    {% if list is not None%}
+    <h2 style="margin-left=140px;" >Booked appointments</h2>
+    <ul style="margin-left=140px;">
+    {% for item in list %}
+    {% if item.Active%}
+    <li class="list-group-item" >Patient Name :{{ item.Name}} </br>  Doctor: {{item.Doctor}} </br> Time :{{item.timestamp}} </br> Date :{{item.Date}} </li>
+    {%endif%}
+    {% endfor %}
+    </ul>
+    {%endif%}
+    
+
+    {% if list2 is not None%}
+    <h2 style="margin-left=140px;">Booked tests</h2>
+    <ul style="margin-left=140px;">
+    {% for item in list2 %}
+    {% if item.Active%}
+    <li class="list-group-item" >Patient Name :{{ item.patient.Name}} </br> Test: {{item.Test}} </br> Time :{{item.timestamp}} </br>Date :{{item.Date}} </li>
+    {%endif%}
+    {% endfor %}
+    </ul>
+    {%endif%}
+
+    {% if list3 is not None%}
+    <h2 style="margin-left=140px;">Order medicine</h2>
+    <ul style="margin-left=140px;">
+    {% for item in list3%}
+    {% if item.Active %}
+    <li class="list-group-item" >Patient Name :{{ item.Patient.Name}} </br> medicine: {{item.medicine}} </br> Date :{{item.Date}} </li>
+
+    {%endif%}
+    {% endfor %}
+    </ul>
+    {%endif%}
+{%endblock%}

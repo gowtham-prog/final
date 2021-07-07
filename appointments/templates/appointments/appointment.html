@@ -1,0 +1,68 @@
+{% extends "appointments/layout.html"%}
+{% load static %}
+{% block body%}
+<form action="{% url 'book' %}" method="post">
+  <h3 style="text-align: center;color:cadetblue">Book Your Appointments Here !</h3>
+        
+        {% csrf_token %}
+        <div class="container">
+      
+        <div>
+          <label for="name"> <b>Patient Name </b></label>
+             
+            <input type="text" name="name" placeholder="Enter name">
+        </div>
+        <div>
+          <label for="age"> <b>patients's Age </b></label>
+            <input type="number" name="age" placeholder=" Enter Age">
+        </div>
+        <div >
+             <label for="gender"><b>Gender</b></label>
+             <select name="gender" placeholder="Grnder">
+              {% for gend in gender %}
+                <option value="{{ gend.id }}">{{ gend.Gender }}</option>
+             {% endfor %}
+           </select>
+         </div>
+        <div >
+             <label for="hospital"><b>Hospaital </b></label>
+             <select  name="hospital" placeholder="Enter Hospital" >
+              {% for hosp in hospital %}
+                <option value="{{ hosp.id }}">{{ hosp.Name }}</option>
+             {% endfor %}
+           </select>
+         </div>
+         <div>
+             <label for="department"> <b>Department</b></label>
+             <select  name="department" placeholder="Enter Department" >
+              {% for dept in department %}
+                <option value="{{ dept.id }}">{{ dept.Name }}</option>
+             {% endfor %}
+           </select>
+         </div>
+         <div >
+             <label for="doctor"><b> Doctor </b></label>
+             <select  name="doctor" placeholder="Enter name" >
+              {% for doc in doctor %}
+                <option value="{{ doc.id }}">{{ doc.Name }}</option>
+             {% endfor %}
+           </select>
+         </div>
+
+        <div >
+            <label><b>Problem</b></label>
+            <input  type="text" name="problem" placeholder="Enter your Problem">
+        </div>
+        <div >
+          <label><b> Time </b></label>
+            <input type="time" name="time" format='%H:%M' placeholder=" Enter Time">
+        </div>
+        <div >
+          <label><b>Date</b></label>
+            <input  type="date" name="date" placeholder=" Enter Date">
+        </div>
+        <button type="submit" value="Book"> Submit </button>
+        </div>
+    </form>
+
+{% endblock %}

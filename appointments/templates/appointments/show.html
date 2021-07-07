@@ -1,0 +1,92 @@
+{% extends "appointments/layout.html "%}
+
+{% block body%}
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+    {% if list %}
+    <div style="margin-left: 100px;">
+    <h2 style="margin-left: 50px; margin-bottom:20px; margin-top:20px"><b>Booked appointments</b></h2>
+    <ul>
+    {% for item in list %}
+
+    {% if item.Active %}
+    <div style="margin-left:230px;">
+    <ul>
+                 <li style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"><b style="color:black;margin-right: 20px;" class = "appoi"> Patient Name :</b>{{ item.Name}}</li>
+             <li style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"> <b style="color:black;margin-right: 20px;">  Doctor:</b>{{item.Doctor}}</li>
+            <li style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"><b style="color:black;margin-right: 20px;">  Time :</b>{{item.timestamp}} </li> 
+            <li style="color:rgb(13, 10, 182); margin-left: 140px; margin-bottom: 20px;"> <b style="color:black;margin-right: 20px;"> Date :</b>{{item.Date}}</li>
+     
+        <a style="color:red; margin-left: 90px; margin-top: 20px;" href= "{% url 'cancel' item.id%}" > Cancel </a>
+    </ul>
+    </div>
+    
+    {%endif%}
+    {% endfor %}
+    </ul>
+     <h5><a  style="margin-left:290px;" href="{%url 'book'%}"> Book another appointment </a></h5>
+    {%else%}
+    <h2 style="margin-left: 50px; margin-bottom:20px; margin-top:20px"><b>Booked appointments</b></h2>
+    <h5  style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"><b style="color:black;margin-right: 20px;"> You haven't booked any appointment, lately.</h5>
+    <h5><a  style="margin-left:290px;" href="{%url 'book'%}"> Book Your First Appointment Here</a></h5>
+    {%endif%}
+
+
+
+    
+    
+
+    {% if list2 %}
+    <h2 style="margin-left: 50px; margin-bottom:20px; margin-top: 30px;"><b>Booked tests</b></h2>
+    <ul>
+    {% for item in list2 %}
+    {% if item.Active%}
+    <div style="margin-left:230px;">
+
+    <ul>
+             <li style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"><b style="color:black;margin-right: 20px;">Patient Name :</b>{{ item.Patient.Name}}</li>
+                <li style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"><b style="color:black;margin-right: 20px;"> Test:</b>{{ item.Test}}</li> 
+                <li style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"><b style="color:black;margin-right: 20px;">  Time :</b>{{item.timestamp}} </li> 
+                <li style="color:rgb(13, 10, 182); margin-left: 140px; margin-bottom: 20px;"><b style="color:black;margin-right: 20px;">  Date :</b> {{item.Date}}</li>
+         
+            <a style="color:red; margin-left: 90px; margin-top: 20px;" href= "{% url 'canceltest' item.id%}" > Cancel </a>
+        </ul>
+    </div>
+    {%endif%}
+    {% endfor %}
+    </ul>
+    <h5><a style="margin-left:290px;" href="{%url 'test'%}"> Book another Test  </a></h5>
+    {%else%}
+    <h2 style="margin-left: 50px; margin-bottom:20px; margin-top:20px"><b>Booked Tests</b></h2>
+    <h5  style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"><b style="color:black;margin-right: 20px;"> You haven't booked any tests lately.</h5>
+    <h5><a  style="margin-left:290px;" href="{%url 'test'%}"> Book Your First Test Here</a></h5>
+    {%endif%}
+
+    {% if list3 %}
+    <h2 style="margin-left: 50px; margin-bottom:20px;margin-top: 30px;"><b>Ordered medicine :</b></h2>
+    <ul>
+    {% for item in list3%}
+    {% if item.Active%}
+    <div style="margin-left:230px;">
+
+    <ul>
+         <li style="color:rgb(13, 10, 182); margin-left: 140px; margin-bottom: 20px;">   <b style="color:black;margin-right: 20px;">Patient Name :</b> {{ item.Patient.Name}}</li>
+         <li style="color:rgb(13, 10, 182); margin-left: 140px; margin-bottom: 20px;">  <b style="color:black; margin-right: 20px;"> Medicine:</b>{{item.medicine}} </li> 
+          <li style="color:rgb(13, 10, 182); margin-left: 140px; margin-bottom: 20px;"><b style="color:black;margin-right: 20px;">   Date :</b> {{item.Date}}</li>
+
+<a style="color:red; margin-left: 90px; margin-top: 20px;" href= "{% url 'cancelmed' item.id%}" > Cancel </a>
+</ul>
+</div>
+    
+    {%endif%}
+    {% endfor %}
+    </ul>
+    <h5><a style="margin-left:290px;" href="{%url 'med'%}"> Order Medicine Again </a></h5>
+    {%else%}
+    <h2 style="margin-left: 50px; margin-bottom:20px; margin-top:20px"><b>Ordered medicines</b></h2>
+    <h5  style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"><b style="color:black;margin-right: 20px;"> You haven't ordered any medicine yet.</h5>
+    <h5><a  style="margin-left:290px;" href="{%url 'med'%}"> Book medicene here</a></h5>
+    {%endif%}
+    </div>
+{%endblock%}

@@ -1,0 +1,55 @@
+{% extends "appointments/layout.html"%}
+{% load static %}
+{% block body%}
+<h2 style="text-align: center; color:cadetblue"> Oredr Your Medicine </h2>
+<form action="{% url 'med' %}" method="post">
+  <div class="container">
+        {% csrf_token %}
+        <hr>
+        <div>
+             <label for="patient"><b>Patient Name</b></label>
+             <select  placeholder="name" name="patient" >
+
+              {% for gend in patient %}
+                <option value="{{ gend.id }}">{{ gend.Name }}</option>
+             {% endfor %}
+           </select>
+         </div>
+         <div>
+             <label for="location"><b>Location</b></label>
+             <select   placeholder="location"name="location" >
+              {% for hosp in location %}
+                <option value="{{ hosp.id }}">{{ hosp.Village }}</option>
+             {% endfor %}
+           </select>
+         </div>
+        <div>
+         <label for="medicine"><b> Medicine </b></label>
+        <input type="text" name="medicine" placeholder="medicine">
+        </div>
+
+        <div>
+         <label for="delivery"><b> Deliver at</b></label>
+
+            <select  name="delivery" >
+                <option value="Home">Home delivery</option>
+                <option value="test center">Pick up</option>
+        </div>
+
+        <div>
+         <label for="delivery"><b> Deliver at</b></label>
+         <input  type="text" name="Name" placeholder="medical shop">
+        </div>
+        
+        <div>
+      <label for="date"><b>Date</b></label>
+            <input type="date" name="date" placeholder="Date">
+        </div>
+      <hr>
+        <label for="order"></label>
+        <button type="submit" class= "registerbtn">Order Medicine </button>
+        </div>
+    </form>
+
+{% endblock %}
+

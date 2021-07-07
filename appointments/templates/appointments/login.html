@@ -1,0 +1,26 @@
+{% extends "appointments/layout.html"%}
+{% load static %}
+{%block body%}
+    {% if message %}
+        <div >{{ message }}</div>
+    {% endif %}
+    <form action="{% url 'login' %}" method="post">
+       {% csrf_token %}
+            <div class="imgcontainer">
+              <img src="{% static 'appointments/img/loginpic.jpg' %}" alt="Avatar" class="avatar" style ="width:200px">
+            </div>
+          
+            <div class="container">
+              <label for="email"><b>Email ID</b></label>
+              <input type="email" placeholder="Enter Email ID" name="email" required>
+          
+              <label for="password"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="password" required>
+          
+              <button type="submit" value="Login">Login</button>
+            </div>
+           <div style="text-align: center;"><h3>If you don't have an account</h3> 
+            <a href="{% url 'register' %}"> <h3>Register here</h3></a> 
+          </div>
+          </form>
+{%endblock%}
