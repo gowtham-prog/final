@@ -5,7 +5,7 @@
 <h2 style = "margin-left:100px;"> Departments we have</h2>
    <div style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"> <b style="color:black;margin-right: 20px;"><strong>
         {% for dep in dept %}
-            <li class="list-group-item"> <strong>{{ dep.id }}. {{ dep.Name }} specialists: Dr. {{dep.Doctor.Name}} ({{dep.Hospital}})</strong></li>
+            <li class="list-group-item"> <strong>{{ dep.id }}. {{ dep.Name }} specialists: Dr. {{dep.Doctor.Name}} {{dep.Hospital.Name}}</strong></li>
         {% endfor %}
     </strong></div>
 {% endif %}
@@ -14,7 +14,7 @@
    <div style="color:rgb(13, 10, 182); margin-left: 140px;margin-bottom: 20px;"> <b style="color:black;margin-right: 20px;"><strong>
         {% for dep in doc %}
             {%for item in dep.Department.all %}
-            <li class="list-group-item" >{{ dep.id }}.Dr. {{ dep.Name }} specialist in {{dep.Department.Name}} ({{item.Name}})</li>
+            <li class="list-group-item" >{{ dep.id }}.Dr. {{ dep.Name }} specialist in {{dep.Department.Name}} {{item.Name}}</li>
             {%endfor%}
         {% endfor %}
    </strong> </div>
